@@ -1,13 +1,14 @@
 import { Response } from 'express';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { asistenciaDto } from 'src/dto/asistencia.dto';
 
 @Injectable()
 export class AsistenciaService {
 
     constructor(private prisma:PrismaService){}
 
-    async addAsistencia(info: {salaId:string, alumnoId:string, asistencia:boolean, justificado:boolean} , response:Response){
+    async addAsistencia(info:asistenciaDto, response:Response){
         const {salaId, alumnoId, asistencia, justificado} = info;
         const data = await this.prisma.alumnos.findUnique({
             where: {
@@ -34,13 +35,13 @@ export class AsistenciaService {
         }
     }
 
-    async alterAsistencia(data: {asistenciaId:string, asiste:boolean, justificado:boolean}, response:Response) {
+    async alterAsistencia(data:asistenciaDto, response:Response) {
         await this.prisma.asistencia.update({
             where:{
-                id:data.asistenciaId
+                id:data.id
             },
             data: {
-                asistencia: data.asiste,
+                asistencia: data.asistencia, 
                 justificado: data.justificado
             }
         }).catch((err) => {
