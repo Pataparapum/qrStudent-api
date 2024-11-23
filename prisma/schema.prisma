@@ -36,6 +36,8 @@ model Asistencia {
   alumnoId String
   sala   Salas @relation(fields: [salaId], references: [id])
   salaId  String
+  asistencia Boolean
+  justificado Boolean?
 }
 
 model Alumnos {
