@@ -18,4 +18,31 @@ model user {
   email    String @unique
   username String 
   password String
+  alumno   Alumnos[]
+}
+
+model Salas {
+  id       String @id @default(cuid())
+  curso    String
+  alumno   Alumnos @relation(fields: [alumnoid], references: [id])
+  alumnoid String
+  asistencia Asistencia[]
+}
+
+model Asistencia {
+  id  String @id @default(cuid())
+  date DateTime
+  alumno  Alumnos @relation(fields: [alumnoId], references: [id])
+  alumnoId String
+  sala   Salas @relation(fields: [salaId], references: [id])
+  salaId  String
+}
+
+model Alumnos {
+  id          String @id @default(cuid())
+  full_name   String
+  user        user @relation(fields: [userId], references: [id])
+  userId      String
+  salas       Salas[]
+  asistencia  Asistencia[]
 }
