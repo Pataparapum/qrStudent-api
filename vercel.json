@@ -1,5 +1,6 @@
 {
     "version":2,
+    "name":"qr-student",
     "builds": [
         {
             "src": "src/main.ts",
