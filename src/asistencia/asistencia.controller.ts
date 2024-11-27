@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AsistenciaService } from './asistencia.service';
 import { Response } from 'express';
 import { asistenciaDto } from 'src/dto/asistencia.dto';
+import { logginGuard } from 'src/guards/login.guard';
 
 @Controller('asistencia')
+@UseGuards(logginGuard)
 export class AsistenciaController {
     
     constructor(private service:AsistenciaService){}

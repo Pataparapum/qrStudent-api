@@ -24,7 +24,7 @@ model user {
 model Salas {
   id       String @id @default(cuid())
   curso    String
-  alumno   Alumnos @relation(fields: [alumnoid], references: [id])
+  alumno   Alumnos @relation(fields: [alumnoid], references: [id], onDelete: Cascade)
   alumnoid String
   asistencia Asistencia[]
 }
@@ -32,9 +32,9 @@ model Salas {
 model Asistencia {
   id  String @id @default(cuid())
   date DateTime
-  alumno  Alumnos @relation(fields: [alumnoId], references: [id])
+  alumno  Alumnos @relation(fields: [alumnoId], references: [id], onDelete: Cascade)
   alumnoId String
-  sala   Salas @relation(fields: [salaId], references: [id])
+  sala   Salas @relation(fields: [salaId], references: [id], onDelete: Cascade)
   salaId  String
   asistencia Boolean?
   justificado Boolean?
@@ -43,7 +43,7 @@ model Asistencia {
 model Alumnos {
   id          String @id @default(cuid())
   full_name   String
-  user        user @relation(fields: [userId], references: [id])
+  user        user @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
   salas       Salas[]
   asistencia  Asistencia[]

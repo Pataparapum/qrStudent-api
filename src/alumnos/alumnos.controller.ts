@@ -1,9 +1,11 @@
-import { Body, Delete, Get, Controller, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Delete, Get, Controller, Param, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AlumnosService } from './alumnos.service';
 import { alumonDto } from 'src/dto/alumno.dto';
-import { response, Response } from 'express';
+import { Response } from 'express';
+import { logginGuard } from 'src/guards/login.guard';
 
 @Controller('alumnos')
+@UseGuards(logginGuard)
 export class AlumnosController {
     
   constructor(private service:AlumnosService){}
