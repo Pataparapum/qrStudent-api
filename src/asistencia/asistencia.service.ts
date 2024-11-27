@@ -14,17 +14,16 @@ export class AsistenciaService {
             where: {
                 id: alumnoId
             }
-        }).catch((err) => {
-            return response.json({err});
-        });
+        })
 
         if (data) {
             const asistenciaData = {
                 date: new Date(),
-                alumnoId,
+                alumnoId: data.id,
                 salaId,
                 asistencia,
                 justificado
+
             };
 
             await this.prisma.asistencia.create({data: asistenciaData}).catch((err) => {
@@ -35,19 +34,56 @@ export class AsistenciaService {
         }
     }
 
-    async alterAsistencia(data:asistenciaDto, response:Response) {
-        await this.prisma.asistencia.update({
-            where:{
-                id:data.id
-            },
-            data: {
-                asistencia: data.asistencia, 
-                justificado: data.justificado
-            }
-        }).catch((err) => {
-            return response.json({err});
-        });
+    async alterAsistencia(id:string, data:asistenciaDto, response:Response) {
 
+        const justificado = await this.prisma.asistencia.findUnique({
+            where: {
+                id: id,
+            },
+            select: {
+                asistencia:true
+            }
+        })
+
+        if(justificado.asistencia) {
+            await this.prisma.asistencia.update({
+                where:{
+                    id:id
+                },
+                data: {
+                    asistencia: data.asistencia, 
+                }
+            }).catch((err) => {
+                return response.json({err});
+            });
+
+        } else {
+            await this.prisma.asistencia.update({
+                where:{
+                    id:id
+                },
+                data: {
+                    asistencia: data.asistencia, 
+                    justificado: data.justificado
+                }
+            }).catch((err) => {
+                return response.json({err});
+            });
+        }
+
+ 
         return response.json({status:200});
+    }
+
+    async getAsistenciaForSala(id:string, response:Response) {
+        const data = await this.prisma.asistencia.findMany({
+            where: {
+                salaId:id
+            }
+        })
+
+        if (data) {
+            return response.json({status:200, data});
+        } else return response.json({error:"no hay asistencias asociadas a la sala"})
     }
 }

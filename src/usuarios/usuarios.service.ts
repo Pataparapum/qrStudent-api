@@ -29,7 +29,9 @@ export class UsuariosService {
         if (user) {
         return response.status(500).json({status:500, error:'Error, el usuario ya existe'});
        } 
-       this.prisma.user.create({data:newUser})
+       await this.prisma.user.create({data:newUser}).catch((err) => {
+        return response.json({err})
+       })
 
        return response.status(200).json({status:200, message:'Usuario creado con exito'})
     }

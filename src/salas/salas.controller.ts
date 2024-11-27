@@ -18,9 +18,9 @@ export class SalasController {
     return this.service.deleteSala(salaId, response);
   }
 
-  @Put()
-  updateSala(@Body() sala:salaDto, @Res() response:Response) {
-    return this.service.updateSala(sala, response);
+  @Put(':id')
+  updateSala(@Param('id') id:string, @Body() sala:salaDto, @Res() response:Response) {
+    return this.service.updateSala(id, sala, response);
   }
 
   @Get()
@@ -29,7 +29,17 @@ export class SalasController {
   }
 
   @Get(':id')
-  getSalaFororId(@Param('id') salaId:string, response:Response) {
+  getSalaFororId(@Param('id') salaId:string,@Res() response:Response) {
     return this.service.getSala(salaId, response);
+  }
+
+  @Get('cursos/:curso')
+  getAlumnoForCurso(@Param('curso') curso:string, @Res() response:Response) {
+    return this.service.getAlumnoOfCurso(curso, response);
+  }
+
+  @Get('asistencia/:curso')
+  getAsistenciaForCurso(@Param('curso') curso:string, @Res() response:Response) {
+    return this.service.getAsistenciaForCurso(curso, response);
   }
 }

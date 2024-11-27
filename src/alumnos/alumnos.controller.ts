@@ -1,21 +1,21 @@
 import { Body, Delete, Get, Controller, Param, Post, Put, Res } from '@nestjs/common';
 import { AlumnosService } from './alumnos.service';
 import { alumonDto } from 'src/dto/alumno.dto';
-import { Response } from 'express';
+import { response, Response } from 'express';
 
 @Controller('alumnos')
 export class AlumnosController {
     
   constructor(private service:AlumnosService){}
 
-  @Post()
-  addAlumno(@Body() alumno:alumonDto, @Res() response:Response){
-    return this.service.addEstudent(alumno, response);
+  @Post(':correo')
+  addAlumno(@Param('correo') correo:string, @Body() alumno:alumonDto, @Res() response:Response){
+    return this.service.addEstudent(correo, alumno, response);
   }
 
-  @Put()
-  updateAlumno(@Body() alumno:alumonDto, @Res() response:Response) {
-    return this.service.updateEstudent(alumno, response);
+  @Put(':id')
+  updateAlumno(@Param('id') id:string, @Body() alumno:alumonDto, @Res() response:Response) {
+    return this.service.updateEstudent(id, alumno, response);
   }
 
   @Delete(':id')
@@ -31,5 +31,10 @@ export class AlumnosController {
   @Get(':id')
   getAlumnoForId(@Param('id') alumnoId:string, @Res() response:Response) {
     return this.service.getAlumnoForId(alumnoId, response);
+  }
+
+  @Get('info/:id')
+  getAlumnoInfo(@Param('id') id:string, @Res() response:Response) {
+    return this.service.getAllAlumnoData(id, response);
   }
 }
