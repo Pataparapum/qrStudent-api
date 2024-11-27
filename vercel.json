@@ -18,7 +18,7 @@
                 "Access-Control-Allow-Credentials": "true"
             },
             "dest": "src/main.ts",
-            "Methods": ["GET","PUT", "POST", "DELETE"]
+            "methods": ["GET","PUT", "POST", "DELETE"]
         }
     ]
 }
