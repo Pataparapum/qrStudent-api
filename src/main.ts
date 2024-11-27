@@ -7,13 +7,7 @@ async function bootstrap() {
     logger:['log'],
   });
   app.use(cookieParser());
-  app.enableCors({
-    origin: true,
-    methods: "GET, PUT, POST, DELETE",
-    allowedHeaders: "Content-Type,Authorization,X-Requested-With,Accept-Language",
-    optionsSuccessStatus: 204,
-    credentials: true,
-  });
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
