@@ -10,9 +10,9 @@ export class AsistenciaController {
     
     constructor(private service:AsistenciaService){}
 
-    @Post()
-    markAsistencia(@Body() asistencia:asistenciaDto, @Res() response:Response){
-      return this.service.addAsistencia(asistencia, response);
+    @Post(':curso')
+    markAsistencia(@Param('curso') curso:string, @Body() asistencia:asistenciaDto, @Res() response:Response){
+      return this.service.addAsistencia(asistencia, curso, response);
     }
   
     @Put(':id')

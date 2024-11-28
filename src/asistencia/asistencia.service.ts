@@ -8,11 +8,18 @@ export class AsistenciaService {
 
     constructor(private prisma:PrismaService){}
 
-    async addAsistencia(info:asistenciaDto, response:Response){
+    async addAsistencia(info:asistenciaDto,curso:string, response:Response){
         const {salaId, alumnoId, asistencia, justificado} = info;
         const data = await this.prisma.alumnos.findUnique({
             where: {
                 id: alumnoId
+            }
+        })
+
+        const sala = await this.prisma.salas.findFirst({
+            where: {
+                alumnoid: alumnoId,
+                curso:curso
             }
         })
 
