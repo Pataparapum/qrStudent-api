@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AsistenciaService } from './asistencia.service';
 import { Response } from 'express';
-import { asistenciaDto } from 'src/dto/asistencia.dto';
-import { logginGuard } from 'src/guards/login.guard';
+import { asistenciaDto } from '../dto/asistencia.dto';
+import { logginGuard } from '../guards/login.guard';
 
 @Controller('asistencia')
 @UseGuards(logginGuard)
