@@ -64,8 +64,6 @@ export class UsuariosService {
         }
         const payload = {sub: user.id, username:user.username};
         
-        response.cookie('payload', payload)
-        
         const token = await this.jwt.signAsync(payload)
 
         return response.setHeader('x-access-token', `Bearer ${token}`)
@@ -75,13 +73,10 @@ export class UsuariosService {
 
     async logout(req:Request, response:Response) {
         try {
-            const cookies =  req.cookies['payload']
             const authHeader =  req.headers['authorization'];
 
             if(!authHeader) return response.sendStatus(204);
-            if(!cookies) return response.json(204);
 
-            response.clearCookie('payload');
             response.removeHeader('authorization')
 
             return response.json({status:200, message:'Sesion cerrada con exito'});
