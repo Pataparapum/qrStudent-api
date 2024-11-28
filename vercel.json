@@ -1,7 +1,7 @@
 {
     "version": 2,
-    "buildCommand": "npm start && npm vercel-build",
-    "installCommand": "npm install",
+    "buildCommand": "npm start && npm postinstall",
+    "installCommand": "npm install && npm vercel-build",
     "builds": [
       {
         "src": "src/main.ts",
