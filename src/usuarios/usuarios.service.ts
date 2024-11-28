@@ -67,7 +67,7 @@ export class UsuariosService {
         const token = await this.jwt.signAsync(payload)
 
         return response.setHeader('x-access-token', `Bearer ${token}`)
-                       .json({token})
+                       .json({token, payload})
 
     }
 
