@@ -19,10 +19,10 @@ export class AlumnosService {
 
         if(usuario.email) {
             alumno.userId = usuario.id;
-            await this.prisma.alumnos.create({data:alumno}).catch((err) => {
+            const data = await this.prisma.alumnos.create({data:alumno}).catch((err) => {
                 return response.json({err});
             });
-            return response.json({status:201});
+            return response.json({status:201, data});
 
         } else return response.json({error:"el usuarios no existe"});
 
