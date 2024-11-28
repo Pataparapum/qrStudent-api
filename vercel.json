@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "buildCommand": "npm start && npm vercel-build",
+    "buildCommand": "npm start && npm postinstall",
     "installCommand": "npm install",
     "builds": [
       {
