@@ -16,7 +16,7 @@ export class UsuariosController {
         return this.user.getUserWithEmail(correo);
     }
 
-    @Post('usuarios/')
+    @Post('usuarios')
     agregarUsuario(@Body() user:userDto, @Res() response: Response) {
         return this.user.resgisterUser(user, response);
     }
