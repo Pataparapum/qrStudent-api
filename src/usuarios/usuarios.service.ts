@@ -2,9 +2,9 @@ import { Injectable, UnauthorizedException} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
 import * as hash from 'bcrypt'
-import { logDto } from 'src/dto/logDto';
-import { userDto } from 'src/dto/userDto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { logDto } from '../dto/logDto';
+import { userDto } from '../dto/userDto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class UsuariosService {

@@ -1,9 +1,8 @@
 import { alumonDto } from './../dto/alumno.dto';
 import { Response } from 'express';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { userDto } from 'src/dto/userDto';
-import { error } from 'console';
+import { PrismaService } from '../prisma/prisma.service';
+
 
 @Injectable()
 export class AlumnosService {

@@ -1,7 +1,7 @@
-import { Injectable, Res } from '@nestjs/common';
-import { Response, response } from 'express';
-import { salaDto } from 'src/dto/sala.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Injectable } from '@nestjs/common';
+import { Response } from 'express';
+import { salaDto } from '../dto/sala.dto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class SalasService {

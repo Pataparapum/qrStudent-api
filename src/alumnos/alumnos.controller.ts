@@ -1,8 +1,8 @@
 import { Body, Delete, Get, Controller, Param, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { AlumnosService } from './alumnos.service';
-import { alumonDto } from 'src/dto/alumno.dto';
+import { alumonDto } from '../dto/alumno.dto';
 import { Response } from 'express';
-import { logginGuard } from 'src/guards/login.guard';
+import { logginGuard } from '../guards/login.guard';
 
 @Controller('alumnos')
 @UseGuards(logginGuard)

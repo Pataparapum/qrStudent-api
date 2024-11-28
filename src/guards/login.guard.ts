@@ -1,8 +1,6 @@
-import { Secret } from './../../node_modules/@types/jsonwebtoken/index.d';
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Request } from "express";
-import { Observable } from "rxjs";
 import { jwtConstants } from 'src/usuarios/jwtConstants';
 
 @Injectable()

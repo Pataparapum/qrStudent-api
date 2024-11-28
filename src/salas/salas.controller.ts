@@ -1,8 +1,8 @@
 import { Body, Delete, Get, Controller, Param, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { SalasService } from './salas.service';
-import { salaDto } from 'src/dto/sala.dto';
+import { salaDto } from '../dto/sala.dto';
 import { Response } from 'express';
-import { logginGuard } from 'src/guards/login.guard';
+import { logginGuard } from '../guards/login.guard';
 
 @Controller('salas')
 @UseGuards(logginGuard)

@@ -1,9 +1,9 @@
-import { Body, Controller, Delete, Get, Logger, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { Request, Response } from 'express';
-import { userDto } from 'src/dto/userDto';
-import { logDto } from 'src/dto/logDto';
-import { logginGuard } from 'src/guards/login.guard';
+import { userDto } from '../dto/userDto';
+import { logDto } from '../dto/logDto';
+import { logginGuard } from '../guards/login.guard';
 
 @Controller('usuarios')
 export class UsuariosController {
