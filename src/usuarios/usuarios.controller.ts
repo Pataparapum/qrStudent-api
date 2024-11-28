@@ -37,4 +37,9 @@ export class UsuariosController {
     deleteUser(@Param('correo') correo:string,@Res() response:Response) {
         return this.user.deleteUser(correo, response)
     }
+
+    @Get('prueba')
+    holaPruena(@Res() response:Response) {
+        return response.json({hola: "hola mundo"});
+    }
 }
