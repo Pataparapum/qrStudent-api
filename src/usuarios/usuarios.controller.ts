@@ -5,28 +5,28 @@ import { userDto } from '../dto/userDto';
 import { logDto } from '../dto/logDto';
 import { logginGuard } from '../guards/login.guard';
 
-@Controller('usuarios')
+@Controller()
 export class UsuariosController {
 
     constructor(private user: UsuariosService) {}
     
-    @Get(':correo') 
+    @Get('/usuarios/:correo') 
     @UseGuards(logginGuard)
     obtenerUsuarios(@Param('correo') correo:string): Promise<userDto> {
         return this.user.getUserWithEmail(correo);
     }
 
-    @Post()
+    @Post('usuarios/')
     agregarUsuario(@Body() user:userDto, @Res() response: Response) {
         return this.user.resgisterUser(user, response);
     }
 
-    @Post('login')
+    @Post('/usuarios/login')
     login(@Body() logData:logDto, @Res() response:Response) {
         return this.user.login(logData, response);
     }
 
-    @Post('logout') 
+    @Post('/usuarios/logout') 
     @UseGuards(logginGuard)
     logout(@Req() request:Request, @Res() response:Response ) {
         return this.user.logout(request, response);
@@ -38,7 +38,7 @@ export class UsuariosController {
         return this.user.deleteUser(correo, response)
     }
 
-    @Get('prueba')
+    @Get()
     holaPruena(@Res() response:Response) {
         return response.json({hola: "hola mundo"});
     }

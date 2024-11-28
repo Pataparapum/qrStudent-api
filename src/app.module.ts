@@ -14,7 +14,7 @@ import { RouterModule } from '@nestjs/core';
             RouterModule.register([
               {
                 path: '/',
-                module: UsuariosModule,
+                
               }
             ])
           ],
