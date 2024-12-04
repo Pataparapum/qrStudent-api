@@ -23,7 +23,7 @@ export class AsistenciaService {
             }
         })
 
-        if (data) {
+        if (data && sala.id == salaId) {
             const asistenciaData = {
                 date: new Date(),
                 alumnoId: data.id,
