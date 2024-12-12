@@ -11,7 +11,6 @@ export class UsuariosController {
     constructor(private user: UsuariosService) {}
     
     @Get('/usuarios/:correo') 
-    @UseGuards(logginGuard)
     obtenerUsuarios(@Param('correo') correo:string): Promise<userDto> {
         return this.user.getUserWithEmail(correo);
     }
