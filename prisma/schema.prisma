@@ -19,6 +19,7 @@ model user {
   email    String @unique
   username String 
   password String
+  rol      String
   alumno   Alumnos[]
 }
 

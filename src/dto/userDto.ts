@@ -4,4 +4,5 @@ export class userDto {
     email:string
     username:string
     password:string
+    rol:string
 }
