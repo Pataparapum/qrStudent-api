@@ -29,6 +29,7 @@ export class UsuariosService {
         if (user) {
             return response.status(500).json({status:500, error:'Error, el usuario ya existe'});
         } 
+        
         newUser.password = await hash.hash(newUser.password, 10);
         
         await this.prisma.user.create({data:newUser}).catch((err) => {
